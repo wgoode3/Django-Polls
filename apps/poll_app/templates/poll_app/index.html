@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Polls</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+<div class="jumbotron">
+	<h1>Polls</h1>
+</div>
+
+<div class="col-sm-6">
+<h3>Register</h3>
+
+<form action="/users/new" method="post">
+	{% csrf_token %}
+	<div class="form-group">
+		<label for="uname">Username:</label>
+		<input type="text" name="username" placeholder="username" id="uname" class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="pass">Password:</label>
+		<input type="password" name="password" placeholder="password" id="pass" class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="pass">Confirm Password:</label>
+		<input type="password" name="confirm" id="confirm" placeholder="confirm password" class="form-control">
+	</div>
+	<input type="submit" value="Register" class="btn btn-success">
+</form>
+</div>
+
+<div class="col-sm-6">
+<h3>Login</h3>
+
+<form action="/session/new" method="post">
+	{% csrf_token %}
+	<div class="form-group">
+		<label for="uname">Username:</label>
+		<input type="text" name="username" placeholder="username" id="uname" class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="pass">Password:</label>
+		<input type="password" name="password" placeholder="password" id="pass" class="form-control">
+	</div>
+	<input type="submit" value="Login" class="btn btn-success">
+</form>
+
+</div>
+
+<div class="col-sm-offset-2 col-sm-8">
+{% if messages %}
+	<ul>
+	{% for message in messages %}
+		<div class="alert alert-danger alert-dismissable">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>	
+			{{ message }}		
+		</div>
+	{% endfor %}
+	</ul>
+{% endif %}
+</div>
+
+</div>
+</body>
+</html>
